@@ -1,0 +1,24 @@
+{
+  "name": "jest-sql-injection-analyzer",
+  "version": "0.1.0",
+  "description": "Jest &amp; Supertest tool for detect SQL and NoSQL injection vulnerabilities in your NodeJS APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsvanilla/jest-sql-injection-analyzer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsvanilla/jest-sql-injection-analyzer/issues"
+  },
+  "homepage": "https://github.com/jsvanilla/jest-sql-injection-analyzer#readme",
+  "dependencies": {
+    "jest": "^29.3.1",
+    "supertest": "^6.3.3"
+  }
+}
