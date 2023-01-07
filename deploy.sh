@@ -14,7 +14,7 @@ else
   npm version patch
 fi
 
-echo $(node -p "require('./javascript/package.json').version")
+echo $(node -p "require('./package.json').version")
 
 git add .
 
