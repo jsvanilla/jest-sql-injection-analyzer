@@ -20,9 +20,9 @@ git add .
 
 if [ -n "$1" ]
 then 
-  git commit -m "Release v$(node -p "require('./javascript/package.json').version")  $1"
+  git commit -m "Release v$(node -p "require('./package.json').version")  $1"
 else 
-  git commit -m "Release v$(node -p "require('./javascript/package.json').version")"
+  git commit -m "Release v$(node -p "require('./package.json').version")"
 fi
 
 git push origin main
