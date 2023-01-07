@@ -1,11 +1,11 @@
-const testSqlInjection = require("./sql_injection.test")
-
-const runTest = () => new testSqlInjection()
+const TestSqlInjection = require("./sql_injection.test")
 
 class SqlAnalizer {
-  constructor(app, urlRequests){
+  constructor(app, urlRequests = []){
     this.app = app;
-    this.urlRequests = urlRequests;
+    this.defaultUrlRequests = ["/users?name="];
+    this.urlRequests = [...urlRequests,...this.defaultUrlRequests];
+    this.testSqlInjection = (app, urlRequests) => new TestSqlInjection();
   }
 
   SqlInjection() {

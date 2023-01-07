@@ -2,10 +2,9 @@ const request = require('supertest');
 
 
 class SqlInjectionTest {
-  constructor(app, urlRequests = []){
+  constructor(app, urlRequests){
     this.app = app;
-    this.defaultUrlRequests = ["/users?name="];
-    this.urlRequests = [...urlRequests,...this.defaultUrlRequests];
+    this.urlRequests = urlRequests;
     this.injections = [
       "'; DROP TABLE users; --",
       "'; SELECT * FROM users WHERE 1 = 1; --",
@@ -18,17 +17,16 @@ class SqlInjectionTest {
       "' OR CONCAT(first_name, ' ', last_name) = 'John Smith'; --"
     ];
   }
-  async test1(urlRequest, injections) {
-    const injection = "'; DROP TABLE users; --";
-    const response = await request(app).get(`/users?name=${injection}`);
 
+  async test1(urlRequest, injection) {
+    const response = await request(this.app).get(`${urlRequest}${injection}`);
     expect(response.statusCode).toBe(400);
     expect(response.body).toEqual({ error: 'Bad Request' });
   }
 
   async run() {
-    outerArray.forEach(() => {
-      innerArray.forEach(async () => {
+    this.urlRequests.forEach((url) => {
+      this.injections.forEach(async (injection) => {
         await this.test1();
       });
     });

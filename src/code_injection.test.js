@@ -1,6 +1,13 @@
 const request = require('supertest');
 
 class CodeInjectionTest {
+  constructor(){
+    this.injections = []
+    //  { "$gt": "" }
+    //  ' || 'a'=='a
+    //  ' || (function(){ var date=new Date(); do{curDate = new Date();}while(curDate-date<10000);})() || '
+    //  " || (function(){ var date=new Date(); do{curDate = new Date();}while(curDate-date<10000);})() || "
+  }
   async testCodeInjection() {
     const injection = "'; console.log('code injected!!'); --";
     const response = await request(app).get(`/users?name=${injection}`)
