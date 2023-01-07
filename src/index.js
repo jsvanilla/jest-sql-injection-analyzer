@@ -1,25 +1,27 @@
 const TestSqlInjection = require("./sql_injection.test")
+const TestCodeInjection = require("./code_injection.test")
 
-class SqlAnalizer {
+class SupertestInjection {
   constructor(app, urlRequests = []){
     this.app = app;
     this.defaultUrlRequests = ["/users?name="];
     this.urlRequests = [...urlRequests,...this.defaultUrlRequests];
-    this.testSqlInjection = (app, urlRequests) => new TestSqlInjection();
+    this.testSqlInjection = (app, urlRequests) => new TestSqlInjection(app, urlRequests);
+    this.testCodeInjection = (app, urlRequests) => new TestCodeInjection(app, urlRequests);
   }
 
-  SqlInjection() {
-    
+  async SqlInjection() {
+    await this.testSqlInjection(this.app, this.urlRequests);
   }
 
-  CodeInjection() {
-    
+  async CodeInjection() {
+    await this.testCodeInjection(this.app, this.urlRequests);
   }
 
-  searchVulnerabilities() {
-    this.runTest1();
-    this.runTest2();
+  async searchVulnerabilities() {
+    await this.testSqlInjection(this.app, this.urlRequests);
+    await this.testCodeInjection(this.app, this.urlRequests);
   }
 }
   
-module.exports = SqlAnalizer;
+module.exports = SupertestInjection;
