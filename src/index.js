@@ -6,21 +6,21 @@ class SupertestInjection {
     this.app = app;
     this.defaultUrlRequests = ["/users?name="];
     this.urlRequests = [...urlRequests,...this.defaultUrlRequests];
-    this.testSqlInjection = (app, urlRequests) => new TestSqlInjection(app, urlRequests);
-    this.testCodeInjection = (app, urlRequests) => new TestCodeInjection(app, urlRequests);
+    this.testSqlInjection = () => new TestSqlInjection();
+    this.testCodeInjection = () => new TestCodeInjection();
   }
 
   async SqlInjection() {
-    await this.testSqlInjection(this.app, this.urlRequests);
+    await this.testSqlInjection.run(this.app, this.urlRequests);
   }
 
   async CodeInjection() {
-    await this.testCodeInjection(this.app, this.urlRequests);
+    await this.testCodeInjection.run(this.app, this.urlRequests);
   }
 
   async searchVulnerabilities() {
-    await this.testSqlInjection(this.app, this.urlRequests);
-    await this.testCodeInjection(this.app, this.urlRequests);
+    await this.testSqlInjection.run(this.app, this.urlRequests);
+    await this.testCodeInjection.run(this.app, this.urlRequests);
   }
 }
   

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+git add .
+
 if [ -n "$2" ] && [ $2 == "minor" ]
 then 
   # 1.2.3 -> 1.3.0

@@ -2,9 +2,7 @@ const request = require('supertest');
 
 
 class SqlInjectionTest {
-  constructor(app, urlRequests){
-    this.app = app;
-    this.urlRequests = urlRequests;
+  constructor(){
     this.injections = [
       "'; DROP TABLE users; --",
       "'; SELECT * FROM users WHERE 1 = 1; --",
@@ -18,16 +16,16 @@ class SqlInjectionTest {
     ];
   }
 
-  async test1(urlRequest, injection) {
-    const response = await request(this.app).get(`${urlRequest}${injection}`);
+  async test1(app, urlRequest, injection) {
+    const response = await request(app).get(`${urlRequest}${injection}`);
     expect(response.statusCode).toBe(400);
     expect(response.body).toEqual({ error: 'Bad Request' });
   }
 
-  async run() {
-    this.urlRequests.forEach((url) => {
+  async run(app, urlRequests) {
+    urlRequests.forEach((url) => {
       this.injections.forEach(async (injection) => {
-        await this.test1();
+        await this.test1(app, url, injection);
       });
     });
     
