@@ -1,6 +1,6 @@
 {
   "name": "jest-sql-injection-analyzer",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Jest &amp; Supertest tool for detect SQL and NoSQL injection vulnerabilities in your NodeJS APIs",
   "main": "index.js",
   "scripts": {
