@@ -1,6 +1,6 @@
-# jest-sql-injection-analyzer
+# <h1 align=center> jest-sql-injection-analyzer </h1>
 
-Jest and Supertest tool for found SQL, NoSQL &amp; code injection vulnerabilities in your NodeJS APIs
+<p align=center> Jest and Supertest tool for found SQL, NoSQL &amp; code injection vulnerabilities in your NodeJS APIs </p>
 
 <p align=center>⚠️ Not ready for Production ⚠️</p>
 
