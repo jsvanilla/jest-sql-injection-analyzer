@@ -2,6 +2,8 @@
 
 git add .
 
+git commit -m "$1"
+
 if [ -n "$2" ] && [ $2 == "minor" ]
 then 
   # 1.2.3 -> 1.3.0

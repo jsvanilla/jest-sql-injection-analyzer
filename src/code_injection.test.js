@@ -3,6 +3,7 @@ const request = require('supertest');
 class CodeInjectionTest {
   constructor(){
     this.injections = []
+    // `${console.log('code injected!!')}`
     //  { "$gt": "" }
     //  ' || 'a'=='a
     //  ' || (function(){ var date=new Date(); do{curDate = new Date();}while(curDate-date<10000);})() || '

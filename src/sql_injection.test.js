@@ -1,19 +1,10 @@
 const request = require('supertest');
+const arraySql = require('./arraySql');
 
 
 class SqlInjectionTest {
   constructor(){
-    this.injections = [
-      "'; DROP TABLE users; --",
-      "'; SELECT * FROM users WHERE 1 = 1; --",
-      "'; DELETE FROM users WHERE 1 = 1; --",
-      "'; ROLLBACK; --",
-      "' OR 1=1 --",
-      "' AND 1=0 --",
-      "' UNION SELECT * FROM users; --",
-      "' OR SUBSTRING(email, 1, 1) = 'a'; --",
-      "' OR CONCAT(first_name, ' ', last_name) = 'John Smith'; --"
-    ];
+    this.injections = arraySql;
   }
 
   async test1(app, urlRequest, injection) {
